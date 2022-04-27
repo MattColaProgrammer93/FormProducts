@@ -50,6 +50,26 @@ function getVideoGame():VideoGame{
 
 function displayGame(myGame:VideoGame):void{
     // Displays video game
+    let displayDiv = getById("display");
+
+    // Create <h2> with game title
+    let gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+
+    // Create paragraph with game details
+    let gameInfo = document.createElement("p");
+    let notDigitalDisplay = "";
+    if (myGame.isDigitalOnly){
+        notDigitalDisplay = "not";
+    }
+    gameInfo.innerText = myGame.title + " has a rating of " +
+                    myGame.rating + ". It costs " + myGame.price.toFixed(2)
+                    + ". It is " + notDigitalDisplay + " digital only";
+
+    // Add <h2> in the <div id="display">
+    displayDiv.appendChild(gameHeading);
+    // Add <p> game info
+    displayDiv.appendChild(gameInfo);
 }
 
 // Validates the data
