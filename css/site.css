@@ -1,5 +1,10 @@
 input[type=text]{
-    padding: .4em;
+    padding: .3em;
+    margin-bottom: 1em;
+}
+
+input[type=text]:hover{
+    background-color:lightblue;
 }
 
 label{
@@ -10,4 +15,33 @@ label{
 
 input[type=checkbox], input[type=button]{
     margin-left: 50%;
+}
+
+#title{
+    text-align: center;
+}
+
+input[type=button] {
+    width: 145px;
+    height: 40px;
+    background-color: antiquewhite;
+}
+
+form label, form button, form input{
+    font-family: Arial;
+}
+
+body {
+    background-color:aliceblue;
+    margin-left:5%;
+    margin-right:5%;
+}
+
+@media only screen and (max-width: 600px){
+    form > label{
+        text-align:left;
+    }
+    input[type=checkbox], input[type=button]{
+        margin-left: 0%;
+    }
 }
