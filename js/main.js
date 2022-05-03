@@ -9,6 +9,7 @@ window.onload = function () {
 };
 function addVideoGame() {
     console.log("Add video game is called");
+    clearErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
@@ -42,8 +43,38 @@ function displayGame(myGame) {
     displayDiv.appendChild(gameInfo);
 }
 function isAllDataValid() {
-    return true;
+    var isValid = true;
+    var title = getInputById("title").value;
+    if (title == "" || title == null) {
+        isValid = false;
+        addErrorMessage("Title is required");
+    }
+    var price = getInputById("price").value;
+    var value = parseFloat(price);
+    if (price == "" || isNaN(value)) {
+        isValid = false;
+        addErrorMessage("Price is must be a number");
+    }
+    var rating = getById("rating").value;
+    if (rating == "") {
+        isValid = false;
+        addErrorMessage("Must pick a rating");
+    }
+    return isValid;
+}
+function addErrorMessage(errMsg) {
+    var errSummary = getById("validation-summary");
+    var errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
+}
+function clearErrors() {
+    var errSummary = getById("validation-summary");
+    errSummary.innerText = "";
 }
 function getById(id) {
+    return document.getElementById(id);
+}
+function getInputById(id) {
     return document.getElementById(id);
 }

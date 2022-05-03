@@ -13,9 +13,10 @@ window.onload = function(){
 
 function addVideoGame(){
     console.log("Add video game is called");
+    clearErrors();
 
     if(isAllDataValid()){
-        let game = getVideoGame();
+        let game:VideoGame = getVideoGame();
         displayGame(game);
     }
 }
@@ -74,8 +75,48 @@ function displayGame(myGame:VideoGame):void{
 
 // Validates the data
 function isAllDataValid(){
-    return true;
+    let isValid = true;
 
+    let title = getInputById("title").value;
+    if (title == "" || title == null){
+        isValid = false;
+        addErrorMessage("Title is required");
+    }
+
+    let price = getInputById("price").value;
+    let value = parseFloat(price);
+    if(price == "" || isNaN(value)){
+        isValid = false;
+        addErrorMessage("Price is must be a number");
+    }
+
+    let rating = (<HTMLOptionElement>getById("rating")).value;
+    if(rating == ""){
+        isValid = false;
+        addErrorMessage("Must pick a rating");
+    }
+
+
+    return isValid;
+}
+
+/*
+    Display error messages
+*/
+function addErrorMessage(errMsg:string) {
+    let errSummary = getById("validation-summary");
+    let errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+
+    errSummary.appendChild(errItem);
+}
+
+/*
+    Clears the errors in validation-summary
+*/
+function clearErrors(){
+    let errSummary = getById("validation-summary");
+    errSummary.innerText = "";
 }
 
 // Test Code
@@ -86,7 +127,16 @@ myGame.rating = "E";
 myGame.isDigitalOnly = true;
 */
 
+/*
+    Shortcuts
+*/
+
 // Shortcut for getElementById
 function getById(id:string){
     return document.getElementById(id);
+}
+
+// Shortcut for getById
+function getInputById(id:string):HTMLInputElement{
+    return <HTMLInputElement>document.getElementById(id);
 }

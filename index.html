@@ -8,7 +8,12 @@
 	<title>Products Form</title>
 </head>
 <body>
-	<h1 id ="title">Add Video Games</h1>
+	<h1>Add Video Games</h1>
+    <div>
+        <ul id="validation-summary">
+
+        </ul>
+    </div>
 
     <form>
         <label for="title">Title: </label> 
@@ -21,10 +26,10 @@
 
         <label for="rating">Rating: </label> 
         <select id="rating">
-            <option>Select a rating</option>
-            <option>E</option>
-            <option>T</option>
-            <option>M</option>
+            <option value = "">Select a rating</option>
+            <option value = "E">E - Everyone</option>
+            <option value = "T">T - Teens</option>
+            <option value = "M">M - Mature</option>
         </select>
         <br>
 
